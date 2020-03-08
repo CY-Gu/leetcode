@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        int sum = 0;
+        string pre_str;
+        
+        for(int i = 0; i < s.size(); i++){
+            pre_str = s.substr(i,1);
+            if (pre_str == "I"){
+                
+                if(s.substr(i+1,1) == "V" ||s.substr(i+1,1) == "X" )
+                    sum = sum - 1;
+                else
+                    sum = sum + 1;
+            }
+            else if (pre_str == "V")
+                sum = sum + 5;
+            else if (pre_str == "X"){
+                if(s.substr(i+1,1) == "L" ||s.substr(i+1,1) == "C" )
+                    sum = sum - 10;
+                else
+                    sum = sum + 10;
+            }
+            else if (pre_str == "L")
+                sum = sum + 50;
+            else if (pre_str == "C"){
+                if(s.substr(i+1,1) == "D" ||s.substr(i+1,1) == "M" )
+                    sum = sum - 100;
+                else
+                    sum = sum + 100;
+            }
+            else if (pre_str == "D")
+                sum = sum + 500;
+            else if (pre_str == "M")
+                sum = sum + 1000;
+            else
+                sum = 0;
+            
+        }
+               return sum;
+            
+    }
+};
