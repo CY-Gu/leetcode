@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        
+        double reverse = 0;
+        double n;
+        double org_x = x;
+        
+        while(x != 0){
+            n = x % 10;
+            reverse = reverse * 10 + n;
+            x = x / 10;
+        }
+        if (reverse == org_x && org_x >=0)
+            return true;
+        else
+            return false;
+    }
+};
