@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+               
+        int final_area=0;
+        int temp_area=0;
+        
+        for(int i=0; i< height.size()-1; i++){
+            for(int j = height.size()-1; j > i; j--){
+                
+                if(height[i] < height[j]){
+                    temp_area = height[i] * (j-i); 
+                }
+                else{
+                    temp_area = height[j] * (j-i);                     
+                }
+                
+                if(temp_area > final_area)
+                    
+                    final_area=temp_area;
+            }       
+        }                     
+        return final_area;        
+    }
+};
