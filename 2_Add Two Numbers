@@ -1,0 +1,55 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        ListNode *result = new ListNode(0);  //return listNode
+        ListNode *p = l1, *q = l2, *r = result;  //linkedList pointer
+        int carry = 0; //計算有沒有進位，有進位要新增一個node
+        int sum = 0; 
+        
+        while(p != NULL && q != NULL){   
+            
+            // l1==l2
+            sum = p->val + q->val + carry; 
+            carry = sum / 10;
+            r->next = new ListNode(sum % 10); 
+            p = p->next;  //移動指標
+            q = q->next;
+            r = r->next; 
+        }
+        
+        while(p != NULL || q != NULL || carry){ 
+            
+            //  l1 !=l2 或者是l1=l2但會進位，例如[5][5]      
+            sum = carry;
+            
+            if(p != NULL){
+                
+                // l1 較多
+                sum = sum + p->val;
+                p = p->next;
+            }
+            if(q != NULL){
+                
+                //  l2 較多
+                sum = sum + q->val;
+                q = q->next;
+            }
+       
+            carry = sum / 10;
+            // 會進到while loop，一定需要新增node，所以可以最後做
+            r->next = new ListNode(sum % 10);
+            // 記得移動指標
+            r = r -> next;
+        } 
+        return result->next;  
+    }
+};
